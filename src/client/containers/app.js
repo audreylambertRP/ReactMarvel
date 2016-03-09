@@ -10,11 +10,11 @@ export default class App extends React.Component {
 
   render() {
     const {heroes} = this.props
-    console.log('heroes = ', heroes)
+    console.log('heroes in container/app.js = ', heroes)
     return (
       <div>
         Test APP
-        <div>First hero is: {heroes[0]}</div>
+        <div>First hero is: {heroes[0] && heroes[0].thumbnail.path}</div>
       </div>
     )
   }
