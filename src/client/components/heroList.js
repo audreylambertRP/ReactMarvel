@@ -2,8 +2,20 @@ import React, {PropTypes} from 'react'
 import _ from 'lodash'
 
 import Hero from './hero'
+import Title from './title'
 
 const HeroList = ({heroes}) => {
+  
+  const styles = {
+    list: {
+     display: 'flex',
+     justifyContent: 'center',
+     alignItems: 'center',
+     flexDirection: 'row',
+     flexWrap: 'wrap'
+    }
+  }
+  
   const listHeroes = _.map(heroes, (hero) => {
     return (
       <Hero key={hero.id} hero={hero} />
@@ -11,7 +23,7 @@ const HeroList = ({heroes}) => {
   })
 
   return (
-    <div>
+    <div style={styles.list}>
       {listHeroes} 
     </div>
   )
