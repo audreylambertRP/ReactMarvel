@@ -23,8 +23,6 @@ export default class App extends React.Component {
   }
 }
 
-//<div>First hero is: {/*heroes[0] && heroes[0].thumbnail.path*/}</div>
-
 App.propTypes = {
   heroes: PropTypes.array.isRequired,
 } 
