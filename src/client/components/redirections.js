@@ -1,6 +1,6 @@
 import React, {PropTypes} from 'react'
 
-const Redirections = ({hero}) => {
+const Redirections = ({hero, onDetails}) => {
 
   const styles = {
     container: {
@@ -13,11 +13,20 @@ const Redirections = ({hero}) => {
       fontSize: '50%',
       color: 'lightGrey',
       margin: '4px 0px 0px 10px'
+    },
+    button: {
+      margin: '4px 0px 0px 10px'
     }
+  }
+
+  const handleDetails = (e) => {
+    e.preventDefault()
+    onDetails(hero.id)
   }
 
   return (
     <div style={styles.container}>
+      <button style={styles.button} onClick={handleDetails}></button>
       {hero.description && <span style={styles.redirection}>#details</span>}
       {hero.urls.length && <span style={styles.redirection}>#wiki</span>}
       {(hero.comics.items.length
@@ -35,7 +44,8 @@ Redirections.propTypes = {
       path: PropTypes.string.isRequired,
       extension: PropTypes.string.isRequired
     }).isRequired
-  }).isRequired
+  }).isRequired,
+  onDetails: PropTypes.func.isRequired
 }
 
 export default Redirections

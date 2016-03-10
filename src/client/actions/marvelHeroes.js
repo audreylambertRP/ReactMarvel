@@ -1,6 +1,11 @@
 import MD5 from 'MD5'
 
 export const HEROES_LOADED = 'HEROES_LOADED'
+export const HERO_LOADED = 'HERO_LOADED'
+export const MAIN_PAGE_LOADED = 'MAIN_PAGE_LOADED'
+export const CHARACTER_PAGE_LOADED = 'CHARACTER_PAGE_LOADED'
+
+const URL = 'http://gateway.marvel.com/v1/public/characters'
 
 const getFetchUrl = (queryUrl) => {
   const getTimestamp = () => {
@@ -16,10 +21,20 @@ const getFetchUrl = (queryUrl) => {
 
 export function loadHeroes() {
   return (dispatch, getState) => {
-    fetch(getFetchUrl('http://gateway.marvel.com/v1/public/characters')).then((heroes) => {
+    fetch(getFetchUrl(URL)).then((heroes) => {
       return heroes.json()
     }).then((heroes) => {
       dispatch(heroesLoaded(heroes.data.results))
+    })
+  }
+}
+
+export function loadHero(id) {
+  return (dispatch, getState) => {
+    fetch(getFetchUrl(URL + '/' + id)).then((hero) => {
+      return hero.json()
+    }).then((hero) => {
+      dispatch(heroLoaded(hero.data.results[0]))
     })
   }
 }
@@ -30,3 +45,26 @@ export function heroesLoaded(heroes) {
     heroes
   }
 }
+
+export function heroLoaded(hero) {
+  return {
+    type: HERO_LOADED,
+    hero
+  }
+}
+
+export function loadMainPage() {
+  return {
+    type: MAIN_PAGE_LOADED,
+    rendering: 'main'
+  }
+}
+
+export function loadCharacterPage() {
+  console.log('dans loadCharacterPage dans action')
+  return {
+    type: CHARACTER_PAGE_LOADED,
+    rendering: 'details'
+  }
+}
+

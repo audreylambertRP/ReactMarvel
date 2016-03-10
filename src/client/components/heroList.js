@@ -4,7 +4,7 @@ import _ from 'lodash'
 import Hero from './hero'
 import Title from './title'
 
-const HeroList = ({heroes}) => {
+const HeroList = ({heroes, onDetails}) => {
   
   const styles = {
     list: {
@@ -18,7 +18,7 @@ const HeroList = ({heroes}) => {
   
   const listHeroes = _.map(heroes, (hero) => {
     return (
-      <Hero key={hero.id} hero={hero} />
+      <Hero key={hero.id} hero={hero} onDetails={onDetails} />
     )
   })
 
@@ -36,7 +36,8 @@ HeroList.propTypes = {
       path: PropTypes.string.isRequired,
       extension: PropTypes.string.isRequired
     }).isRequired
-  })).isRequired
+  })).isRequired,
+  onDetails: PropTypes.func.isRequired
 }
 
 export default HeroList
