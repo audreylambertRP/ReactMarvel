@@ -16,11 +16,11 @@ const Photo = ({url, onMain}) => {
       margin: '0% 5% 0% 0%'
     },
     image: {
-      width: '180px',
+      width: '200px',
       height: '250px'
     },
     button: {
-    
+      width: '200px',
     }
   }
 

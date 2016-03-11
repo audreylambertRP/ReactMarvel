@@ -2,7 +2,6 @@ import React, {PropTypes} from 'react'
 import {connect} from 'react-redux'
 import {
   loadHeroes,
-  loadHero,
   loadMainPage,
   loadCharacterPage
 } from '../actions/marvelHeroes' 
@@ -16,8 +15,7 @@ export default class App extends React.Component {
   }
 
   handleDetails = (id) => {
-    this.props.dispatch(loadCharacterPage())
-    this.props.dispatch(loadHero(id))
+    this.props.dispatch(loadCharacterPage(id))
   }
 
   handleBackToList = () => {
@@ -26,9 +24,6 @@ export default class App extends React.Component {
 
   render() {
     const {heroes, hero, rendering} = this.props
-
-    //console.log ('hero in container/app.js = ', hero)
-    //console.log('heroes in container/app.js = ', heroes)
     
     return (
       <div>

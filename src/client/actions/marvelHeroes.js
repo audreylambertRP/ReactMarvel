@@ -1,7 +1,6 @@
 import MD5 from 'MD5'
 
 export const HEROES_LOADED = 'HEROES_LOADED'
-export const HERO_LOADED = 'HERO_LOADED'
 export const MAIN_PAGE_LOADED = 'MAIN_PAGE_LOADED'
 export const CHARACTER_PAGE_LOADED = 'CHARACTER_PAGE_LOADED'
 
@@ -29,16 +28,6 @@ export function loadHeroes() {
   }
 }
 
-export function loadHero(id) {
-  return (dispatch, getState) => {
-    fetch(getFetchUrl(URL + '/' + id)).then((hero) => {
-      return hero.json()
-    }).then((hero) => {
-      dispatch(heroLoaded(hero.data.results[0]))
-    })
-  }
-}
-
 export function heroesLoaded(heroes) {
   return {
     type: HEROES_LOADED,
@@ -46,9 +35,20 @@ export function heroesLoaded(heroes) {
   }
 }
 
-export function heroLoaded(hero) {
+export function loadCharacterPage(id) {
+  return (dispatch, getState) => {
+    fetch(getFetchUrl(URL + '/' + id)).then((hero) => {
+      return hero.json()
+    }).then((hero) => {
+      dispatch(characterPageLoaded(hero.data.results[0]))
+    })
+  }
+}
+
+export function characterPageLoaded(hero) {
   return {
-    type: HERO_LOADED,
+    type: CHARACTER_PAGE_LOADED,
+    rendering: 'details',
     hero
   }
 }
@@ -60,12 +60,3 @@ export function loadMainPage() {
     hero: {}
   }
 }
-
-export function loadCharacterPage() {
-  console.log('dans loadCharacterPage dans action')
-  return {
-    type: CHARACTER_PAGE_LOADED,
-    rendering: 'details'
-  }
-}
-

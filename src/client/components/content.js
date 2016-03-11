@@ -5,7 +5,7 @@ const Content = ({hero}) => {
 
   const mapping = (array) => {
     return (
-      array.length &&
+      array.length !== 0 &&
       _.map(array, (item, index) => {
         return (
           <div key={index} style={styles.row}>{item.name}</div>
@@ -57,18 +57,24 @@ const Content = ({hero}) => {
         }
       </div>
       <div style={styles.references}>
-        <div>
-          <div style={styles.title}>Comics</div>
-          <div styles={styles.list}>{mapping(hero.comics.items)}</div>
-        </div>
-        <div id='series'>
-          <div style={styles.title}>Series</div>
-          <div styles={styles.list}>{mapping(hero.series.items)}</div>
-        </div>
-        <div id='stories'>
-          <div style={styles.title}>Stories</div>
-          <div styles={styles.list}>{mapping(hero.stories.items)}</div>
-        </div>
+        {hero.comics.items.length !== 0 &&
+          <div>
+            <div style={styles.title}>Comics</div>
+            <div styles={styles.list}>{mapping(hero.comics.items)}</div>
+          </div>
+        }
+        {hero.series.items.length !== 0 &&
+          <div>
+            <div style={styles.title}>Series</div>
+            <div styles={styles.list}>{mapping(hero.series.items)}</div>
+          </div>
+        }
+        {hero.stories.items.length !== 0 &&
+          <div>
+            <div style={styles.title}>Stories</div>
+            <div styles={styles.list}>{mapping(hero.stories.items)}</div>
+          </div>
+        }
       </div>
     </div>
   )
