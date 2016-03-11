@@ -26,7 +26,8 @@ export default function reducer(state = initialState, action) {
     case 'MAIN_PAGE_LOADED':
       return {
         ...state,
-        rendering: action.rendering
+        rendering: action.rendering,
+        hero: action.rendering
     }
     case 'CHARACTER_PAGE_LOADED':
       return {

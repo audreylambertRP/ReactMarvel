@@ -56,7 +56,8 @@ export function heroLoaded(hero) {
 export function loadMainPage() {
   return {
     type: MAIN_PAGE_LOADED,
-    rendering: 'main'
+    rendering: 'main',
+    hero: {}
   }
 }
 
