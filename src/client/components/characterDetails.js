@@ -10,9 +10,17 @@ const CharacterDetails = ({hero, onMain}) => {
     }
     const photoUrl = `${hero.thumbnail.path}.${hero.thumbnail.extension}`
 
+    const styles = {
+      container: {
+        display: 'flex',
+        flexDirection: 'row',
+        margin: '100px auto 0px',
+        width: '75%',
+      }
+    }
+
     return (
-    <div>
-    on entre dans Character Details
+    <div style={styles.container}>
       <Photo url={photoUrl} onMain={onMain} />
       <Content hero={hero} />
     </div>

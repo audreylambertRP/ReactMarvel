@@ -7,10 +7,27 @@ const Photo = ({url, onMain}) => {
     onMain()
   }
   
+  const styles = {
+    container: {
+      display: 'flex',
+      flexDirection: 'column',
+      width: '25%',
+      height: '100%',
+      margin: '0% 5% 0% 0%'
+    },
+    image: {
+      width: '180px',
+      height: '250px'
+    },
+    button: {
+    
+    }
+  }
+
   return (
-    <div>
-      <img src={url} alt="heroImage" />
-      <button onClick={handleMain}>Back to list</button>
+    <div style={styles.container}>
+      <img src={url} alt="heroImage" style={styles.image} />
+      <button onClick={handleMain} style={styles.button}>Back to list</button>
     </div>
   )
 }
