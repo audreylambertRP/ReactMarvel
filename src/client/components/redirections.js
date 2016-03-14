@@ -1,6 +1,6 @@
 import React, {PropTypes} from 'react'
 
-const Redirections = ({hero, onDetails}) => {
+const Redirections = ({hero/*, onDetails*/}) => {
 
   const styles = {
     container: {
@@ -21,7 +21,7 @@ const Redirections = ({hero, onDetails}) => {
 
   const handleDetails = (e) => {
     e.preventDefault()
-    onDetails(hero.id)
+    //onDetails(hero.id)
   }
 
   return (
@@ -45,7 +45,7 @@ Redirections.propTypes = {
       extension: PropTypes.string.isRequired
     }).isRequired
   }).isRequired,
-  onDetails: PropTypes.func.isRequired
+  //onDetails: PropTypes.func.isRequired
 }
 
 export default Redirections

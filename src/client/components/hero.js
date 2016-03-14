@@ -2,7 +2,7 @@ import React, {PropTypes} from 'react'
 
 import Redirections from './redirections'
 
-const Hero = ({hero, onDetails}) => {
+const Hero = ({hero/*, onDetails*/}) => {
   const photoUrl = `${hero.thumbnail.path}.${hero.thumbnail.extension}`
   
   const styles = {
@@ -37,7 +37,7 @@ const Hero = ({hero, onDetails}) => {
       <div style={styles.name}>
         <div>{hero.name}</div>
       </div>
-      <Redirections hero={hero} onDetails={onDetails}/>
+      <Redirections hero={hero} /*onDetails={onDetails}*//>
     </div>
   )
 }
@@ -50,7 +50,7 @@ Hero.propTypes = {
       extension: PropTypes.string.isRequired
     }).isRequired
   }).isRequired,
-  onDetails: PropTypes.func.isRequired
+  //onDetails: PropTypes.func.isRequired
 }
 
 export default Hero

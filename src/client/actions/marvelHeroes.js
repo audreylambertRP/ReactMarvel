@@ -48,7 +48,7 @@ export function loadCharacterPage(id) {
 export function characterPageLoaded(hero) {
   return {
     type: CHARACTER_PAGE_LOADED,
-    rendering: 'details',
+    //rendering: 'details',
     hero
   }
 }
@@ -56,7 +56,7 @@ export function characterPageLoaded(hero) {
 export function loadMainPage() {
   return {
     type: MAIN_PAGE_LOADED,
-    rendering: 'main',
+    //rendering: 'main',
     hero: {}
   }
 }

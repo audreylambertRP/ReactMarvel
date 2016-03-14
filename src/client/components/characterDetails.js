@@ -1,9 +1,10 @@
 import React, {PropTypes} from 'react'
-
+import {connect} from 'react-redux'
+import {marvelSelector} from '../selectors/marvelHeroes'
 import Photo from './photo'
 import Content from './content'
 
-const CharacterDetails = ({hero, onMain}) => {
+const CharacterDetails = ({hero/*, onMain*/}) => {
     const handleMain = (e) => {
       e.preventDefault()
       onMain()
@@ -21,7 +22,7 @@ const CharacterDetails = ({hero, onMain}) => {
 
     return (
     <div style={styles.container}>
-      <Photo url={photoUrl} onMain={onMain} />
+      <Photo url={photoUrl} /*onMain={onMain}*/ />
       <Content hero={hero} />
     </div>
   )
@@ -29,7 +30,8 @@ const CharacterDetails = ({hero, onMain}) => {
 
 CharacterDetails.propTypes = {
   hero: PropTypes.object.isRequired,
-  onMain: PropTypes.func.isRequired
+  //onMain: PropTypes.func.isRequired
 }
 
-export default CharacterDetails
+export default connect(marvelSelector) (CharacterDetails)
+//export default CharacterDetails
