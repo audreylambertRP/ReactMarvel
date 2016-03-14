@@ -1,6 +1,6 @@
 import React, {PropTypes} from 'react'
 
-const Redirections = ({hero/*, onDetails*/}) => {
+const Redirections = ({hero, onDetail}) => {
 
   const styles = {
     container: {
@@ -21,7 +21,7 @@ const Redirections = ({hero/*, onDetails*/}) => {
 
   const handleDetails = (e) => {
     e.preventDefault()
-    //onDetails(hero.id)
+    onDetail(hero.id)
   }
 
   return (
