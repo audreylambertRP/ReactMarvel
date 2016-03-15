@@ -10,7 +10,6 @@ import {Router, Route, IndexRoute, browserHistory} from 'react-router'
 import rootReducer from './reducers/index'
 import Main from './containers/main'
 import CharacterDetails from './containers/characterDetails'
-import NotFound from './components/notfound'
 require('whatwg-fetch')
 
 const store = createStore(
@@ -32,5 +31,3 @@ render(
   </Provider>,
   document.getElementById("myApp")
 );
-      //{/*<IndexRoute component={Main} />*/}
-        //<Route path='*' component={NotFound} />
