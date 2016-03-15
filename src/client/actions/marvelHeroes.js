@@ -1,8 +1,9 @@
 import MD5 from 'MD5'
+import {goBack} from 'react-router-redux'
 
 export const HEROES_LOADED = 'HEROES_LOADED'
-export const EMPTY_HERO = 'EMPTY_HERO'
 export const HERO_LOADED = 'HERO_LOADED'
+export const EMPTY_HERO = 'EMPTY_HERO'
 
 const URL = 'http://gateway.marvel.com/v1/public/characters'
 
@@ -55,6 +56,13 @@ export function heroLoaded(hero) {
 export function emptyHero() {
   return {
     type: EMPTY_HERO,
-    hero: {}
+    hero: null
+  }
+}
+
+export function loadMainPage() {
+  return (dispatch, getState) => {
+    dispatch(goBack())
+    dispatch(emptyHero())
   }
 }

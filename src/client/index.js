@@ -1,29 +1,36 @@
 import React from 'react'
 import {render} from 'react-dom'
+import {syncHistoryWithStore, routerMiddleware} from 'react-router-redux'
 import {createStore, applyMiddleware} from 'redux'
-import {routerMiddleware /*syncHistory*/} from 'react-router-redux'
-import {browserHistory} from 'react-router'
 import thunk from 'redux-thunk'
 import createLogger from 'redux-logger'
 import {Provider} from 'react-redux'
+import {Router, Route, IndexRoute, browserHistory} from 'react-router'
 
 import rootReducer from './reducers/index'
-import App from './containers/app'
+import Main from './containers/main'
+import CharacterDetails from './containers/characterDetails'
+import NotFound from './components/notfound'
 require('whatwg-fetch')
 
-const history = routerMiddleware(browserHistory)
-const store = createStore (
-                rootReducer,
-                undefined,
-                applyMiddleware(thunk, history, createLogger())
+const store = createStore(
+  rootReducer,
+  undefined,
+  applyMiddleware(thunk, routerMiddleware(browserHistory), createLogger())
 )
 
-import {loadHeroes} from './actions/marvelHeroes'
-store.dispatch(loadHeroes())
+const history = syncHistoryWithStore(browserHistory, store)
+
+history.listen(location => console.log(`==> ROUTE: ${location.pathname}`))
 
 render(
   <Provider store={store}>
-    <App />
+    <Router history={history}>
+      <Route path='/' component={Main} />
+      <Route path='character/:id' component={CharacterDetails} />
+    </Router>
   </Provider>,
   document.getElementById("myApp")
 );
+      //{/*<IndexRoute component={Main} />*/}
+        //<Route path='*' component={NotFound} />
