@@ -1,17 +1,15 @@
 import React, {PropTypes} from 'react'
 import {connect} from 'react-redux'
 import {marvelSelector} from '../selectors/marvelHeroes'
+import {goBack} from 'react-router-redux'
+
+import {emptyHero} from '../actions/marvelHeroes'
 import Photo from './photo'
 import Content from './content'
 
-const CharacterDetails = ({hero/*, onMain*/}) => {
-    const handleMain = (e) => {
-      e.preventDefault()
-      onMain()
-    }
-    const photoUrl = `${hero.thumbnail.path}.${hero.thumbnail.extension}`
-
-    const styles = {
+export default class CharacterDetails extends React.Component {
+ 
+    styles = {
       container: {
         display: 'flex',
         flexDirection: 'row',
@@ -19,19 +17,27 @@ const CharacterDetails = ({hero/*, onMain*/}) => {
         width: '75%',
       }
     }
+    
+    onMain = () => {
+      this.props.dispatch(emptyHero())
+      this.props.dispatch(goBack())
+    }
+    
+    photoUrl = `${this.props.hero.thumbnail.path}.${this.props.hero.thumbnail.extension}`
 
-    return (
-    <div style={styles.container}>
-      <Photo url={photoUrl} /*onMain={onMain}*/ />
-      <Content hero={hero} />
-    </div>
-  )
+    render() {
+      const {hero} = this.props
+      return (
+        <div style={this.styles.container}>
+          <Photo url={this.photoUrl} onMain={this.onMain} />
+          <Content hero={hero} />
+        </div>
+      )
+    }
 }
 
 CharacterDetails.propTypes = {
   hero: PropTypes.object.isRequired,
-  //onMain: PropTypes.func.isRequired
 }
 
 export default connect(marvelSelector) (CharacterDetails)
-//export default CharacterDetails

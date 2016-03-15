@@ -1,13 +1,12 @@
 import {
   HEROES_LOADED,
-  MAIN_PAGE_LOADED,
-  CHARACTER_PAGE_LOADED
+  EMPTY_HERO,
+  LOAD_HERO
 } from '../actions/marvelHeroes'
 
 const initialState = {
   heroes: [],
   hero: {},
-  rendering: 'main'
 }
 
 function heroesReducer(state = initialState, action) {
@@ -17,21 +16,14 @@ function heroesReducer(state = initialState, action) {
         ...state,
         heroes: action.heroes
     }
-    /*case 'HERO_LOADED':
-      return {
-      ...state,
-      hero: action.hero
-    }*/
-    case 'MAIN_PAGE_LOADED':
+    case 'EMPTY_HERO':
       return {
         ...state,
-        //rendering: action.rendering,
         hero: action.hero
     }
-    case 'CHARACTER_PAGE_LOADED':
+    case 'LOAD_HERO':
       return {
       ...state,
-      //rendering: action.rendering,
       hero: action.hero
     }
     default:

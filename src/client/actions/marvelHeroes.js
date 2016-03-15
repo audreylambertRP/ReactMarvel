@@ -1,8 +1,8 @@
 import MD5 from 'MD5'
 
 export const HEROES_LOADED = 'HEROES_LOADED'
-export const MAIN_PAGE_LOADED = 'MAIN_PAGE_LOADED'
-export const CHARACTER_PAGE_LOADED = 'CHARACTER_PAGE_LOADED'
+export const EMPTY_HERO = 'EMPTY_HERO'
+export const HERO_LOADED = 'HERO_LOADED'
 
 const URL = 'http://gateway.marvel.com/v1/public/characters'
 
@@ -35,7 +35,7 @@ export function heroesLoaded(heroes) {
   }
 }
 
-export function loadCharacterPage(id) {
+export function loadHero(id) {
   return (dispatch, getState) => {
     fetch(getFetchUrl(URL + '/' + id)).then((hero) => {
       return hero.json()
@@ -45,18 +45,16 @@ export function loadCharacterPage(id) {
   }
 }
 
-export function characterPageLoaded(hero) {
+export function heroLoaded(hero) {
   return {
-    type: CHARACTER_PAGE_LOADED,
-    //rendering: 'details',
+    type: HERO_LOADED,
     hero
   }
 }
 
-export function loadMainPage() {
+export function emptyHero() {
   return {
-    type: MAIN_PAGE_LOADED,
-    //rendering: 'main',
+    type: EMPTY_HERO,
     hero: {}
   }
 }

@@ -2,6 +2,8 @@ import React, {PropTypes} from 'react'
 import {connect} from 'react-redux'
 import {marvelSelector} from '../selectors/marvelHeroes'
 import {push} from 'react-router-redux'
+
+import {loadHero} from '../actions/marvelHeroes'
 import HeroList from '../components/heroList'
 import Title from '../components/title'
 
@@ -16,7 +18,8 @@ export default class Main extends React.Component {
       }
     }
 
-    handleDetail = (id) => {
+    onDetail = (id) => {
+      this.props.dispatch(loadHero(id))
       this.props.dispatch(push('/character/' + id))
     }
 
@@ -26,7 +29,7 @@ export default class Main extends React.Component {
       return (
         <div style={this.styles.container}>
           <Title />
-          <HeroList heroes={heroes} onDetail={this.handleDetail} />
+          <HeroList heroes={heroes} onDetail={this.onDetail} />
         </div>
       )
   }

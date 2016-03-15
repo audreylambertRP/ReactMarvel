@@ -57,10 +57,10 @@ const App = (props) => {
     <Router history={history}>
       <Route path='/'>
         <IndexRoute component={Main} />
+        <Route path='character/:id' component={CharacterDetails} />
       </Route>
     </Router>
   )
 }
-        //<Route path='character/:id' component={CharacterDetails} />
 
 export default connect(marvelSelector) (App)
