@@ -40,7 +40,7 @@ export function loadHero(id) {
     fetch(getFetchUrl(URL + '/' + id)).then((hero) => {
       return hero.json()
     }).then((hero) => {
-      dispatch(characterPageLoaded(hero.data.results[0]))
+      dispatch(heroLoaded(hero.data.results[0]))
     })
   }
 }

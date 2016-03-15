@@ -1,4 +1,5 @@
 import React, {PropTypes} from 'react'
+import {render} from 'react-dom'
 import {connect} from 'react-redux'
 import {marvelSelector} from '../selectors/marvelHeroes'
 import {goBack} from 'react-router-redux'
