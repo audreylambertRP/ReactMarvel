@@ -44,8 +44,10 @@ export function start(params, resources, cb) {
     app.use(bodyParser.json({limit: '10mb', extended: true}));
 
 
+    app.use(logger('dev'));
     app.use(express.static(path.join(__dirname, '../../../../public')));
     app.use('/build', express.static(path.join(__dirname, '../../../build')));
+    app.use(function(req, res, next){res.sendFile(path.join(__dirname, '../../public/index.html')) }); 
 
     //require('./ping').init(app, resources);
     //require('./coucou').init(app, resources);
@@ -53,7 +55,6 @@ export function start(params, resources, cb) {
     //require('./companyworkers').init(app, resources);
     //require('./people').init(app, resources);
     // register morgan logger
-    app.use(logger('dev'));
 
 
     cb(null, {stop: stop});

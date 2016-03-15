@@ -9,7 +9,6 @@ import HeroList from '../components/heroList'
 import Title from '../components/title'
 
 class Main extends React.Component {
-
     componentWillMount() {
       this.props.dispatch(loadHeroes())
     }
@@ -18,19 +17,19 @@ class Main extends React.Component {
       this.props.dispatch(push('/character/' + id))
     }
 
-    styles = {
-      container: {
-        width: '80%',
-        display: 'flex',
-        flexDirection: 'column',
-        margin: 'auto'
+    render() {   
+      const styles = {
+        container: {
+          width: '80%',
+          display: 'flex',
+          flexDirection: 'column',
+          margin: 'auto'
+        }
       }
-    }
-
-    render() {
       const {heroes} = this.props
+
       return (
-        <div style={this.styles.container}>
+        <div style={styles.container}>
           <Title />
           <HeroList heroes={heroes} onDetail={this.onDetail} />
         </div>
